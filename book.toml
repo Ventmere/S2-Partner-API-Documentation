@@ -1,0 +1,6 @@
+[book]
+authors = ["terry_zhou"]
+language = "en"
+multilingual = false
+src = "src"
+title = "S2 Partner Api Book"
