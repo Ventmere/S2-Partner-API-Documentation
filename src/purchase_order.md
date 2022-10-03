@@ -1,6 +1,6 @@
 # Purchase Order
 
-A purchase order is a customer's request to purchase one or more products from a shop. You can create and retrieve orders using the Purchase Order resource.
+You can create and retrieve orders using the Purchase Order resource.
 
 ---
 
