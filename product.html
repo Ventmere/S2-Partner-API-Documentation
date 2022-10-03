@@ -135,13 +135,14 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="product"><a class="header" href="#product">Product</a></h1>
+<p>Product resource let you fetch all your available products.</p>
 <hr />
 <h2 id="api-get-products"><a class="header" href="#api-get-products">API: Get Products</a></h2>
-<p><a href="https://s2-api.ventmere.io/swagger-ui/#/partner/query_products">Specification</a></p>
+<p>Learn more : <a href="https://s2-api.ventmere.io/swagger-ui/#/partner/query_products">Specification</a></p>
 <ul>
 <li>
 <p><strong>URL:</strong></p>
-<p><code>/partner/product</code></p>
+<p><code>/product</code></p>
 </li>
 <li>
 <p><strong>Method:</strong></p>
@@ -155,6 +156,52 @@
 <tr><td><code>next_token</code></td><td>No</td><td>A token for use in pagination. Your subsequent call can include <code>next_token=xxxxx</code> in order to fetch the next page of the list</td></tr>
 </tbody></table>
 </div>
+<ul>
+<li>
+<p><strong>Data Params</strong></p>
+<p><code>None</code></p>
+</li>
+<li>
+<p><strong>Success Response</strong></p>
+<ul>
+<li><strong>Code:</strong> <code>200</code> <br />
+<strong>Content:</strong>
+<pre><code class="language-json">{
+  &quot;item&quot;:[
+      {
+          &quot;sku&quot;: &quot;mluw-tb2n&quot;,
+          &quot;upc&quot;: &quot;7990611084&quot;,
+          &quot;title&quot;: &quot;Licensed Cotton Keyboard&quot;,
+          &quot;is_parent&quot;: false,
+          &quot;remarks&quot;: &quot;{\&quot;masked_data\&quot;:\&quot;masked\&quot;}&quot;,
+          &quot;case_pack&quot;: 10,
+          &quot;image_main&quot;: &quot;https://loremflickr.com/640/480&quot;,
+          &quot;package_length_mm&quot;: 225,
+          &quot;package_width_mm&quot;: 97,
+          &quot;package_height_mm&quot;: 264,
+          &quot;shipping_weight_kg&quot;: 0.65,
+          &quot;case_length_mm&quot;: 508,
+          &quot;case_width_mm&quot;: 286,
+          &quot;case_height_mm&quot;: 489,
+          &quot;case_weight_kg&quot;: 7.96,
+          &quot;category&quot;: &quot;Headphones&quot;
+      }
+  ]
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Sample Call:</strong></p>
+<pre><code class="language-sh">    curl -X 'GET' \
+        'https://s2-api.ventmere.io/partner/product' \
+        -H 'accept: application/json' \
+        -H 'X-AccessKey: xxxxxxxxxxxxx'
+</code></pre>
+</li>
+</ul>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">

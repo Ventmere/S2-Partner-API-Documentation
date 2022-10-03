@@ -139,34 +139,38 @@
 <h2 id="api-reference"><a class="header" href="#api-reference">API Reference</a></h2>
 <p>The S2 Partner API is organized around <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a>. Our API has predictable resource-oriented URLs, and uses standard HTTP response codes, authentication, and verbs.</p>
 <p>The S2 Partner API doesn't support bulk updates. You can work on only one object per request.</p>
-<h3 id="base-url"><a class="header" href="#base-url">Base URL</a></h3>
-<pre><code>https://s2-api.ventmere.io/partner/
-</code></pre>
 <h2 id="onboarding"><a class="header" href="#onboarding">Onboarding</a></h2>
-<p>To use the Marketplace API, you must first have valid credentials.</p>
+<p>To use the S2 Partner API, you must first have valid credentials.</p>
 <p>Once you have been approved, your account manager will send you API keys, see: <a href="./authentication">Authentication</a></p>
+<h2 id="test-environment"><a class="header" href="#test-environment">Test Environment</a></h2>
+<p>You can use the S2 partner API in test mode with the test base API URL, which doesn't affect your live data.</p>
+<p>The dev base API URL is : <code>https://s2-api.ventmere.io/partner</code></p>
+<h2 id="going-live"><a class="header" href="#going-live">Going Live</a></h2>
+<p>Once testing is complete, you can switch to production API.</p>
+<p>The production API URL is: <code>https://api.s2sell.com/core/partner</code></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="authentication"><a class="header" href="#authentication">Authentication</a></h1>
 <p>All API calls require authentication.
 Authentication with the API is done using a HTTP header,</p>
 <ul>
-<li>X-AccessKey: The access key</li>
+<li>X-AccessKey: Your access key</li>
 </ul>
 <pre><code class="language-sh">curl -X 'GET' \
   'https://s2-api.ventmere.io/partner/fulfillment' \
   -H 'accept: application/json' \
   -H 'X-AccessKey: YOUR-ACCESS-KEY'
 </code></pre>
-<p>Your marketplace account manager will set these up and communicate them with you.</p>
-<p>Your API access key carry many privileges, so be sure to keep them secure! Do not share your secret API keys in publicly accessible areas such as GitHub, client-side code, and so forth.</p>
+<p>Your S2 Partner account manager will set these up and communicate them with you.</p>
+<p>Your API access key carries many privileges, so be sure to keep them secure! Do not share your secret API access keys in publicly accessible areas such as GitHub, client-side code, and etc.</p>
 <p>All API requests must be made over HTTPS. API requests without authentication will also fail.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="fulfillment"><a class="header" href="#fulfillment">Fulfillment</a></h1>
+<p>You can use the <code>Fulfillment</code> resource to view fulfillments for a list of orders or a fulfillment order. A fulfillment represents work that is completed as part of a fulfillment order and can include one or more items. You can use the <code>Fulfillment</code> resource to manage fulfillments for both orders and fulfillment orders.</p>
 <hr />
 <h2 id="api-get-fulfillments"><a class="header" href="#api-get-fulfillments">API: Get Fulfillments</a></h2>
-<p><a href="https://s2-api.ventmere.io/swagger-ui/#/partner/query_fulfillments">Specification</a></p>
+<p>Learn more : <a href="https://s2-api.ventmere.io/swagger-ui/#/partner/query_fulfillments">Specification</a></p>
 <ul>
 <li>
 <p><strong>URL:</strong></p>
-<p><code>/partner/fulfillment</code></p>
+<p><code>/fulfillment</code></p>
 </li>
 <li>
 <p><strong>Method:</strong></p>
@@ -181,26 +185,225 @@ Authentication with the API is done using a HTTP header,</p>
 <tr><td><code>next_token</code></td><td>No</td><td>A token for use in pagination. Your subsequent call can include <code>next_token=xxxxx</code> in order to fetch the next page of the list</td></tr>
 </tbody></table>
 </div>
+<ul>
+<li>
+<p><strong>Data Params</strong></p>
+<p><code>None</code></p>
+</li>
+<li>
+<p><strong>Success Response</strong></p>
+<ul>
+<li><strong>Code:</strong> <code>200</code> <br />
+<strong>Content:</strong> 
+<pre><code class="language-json">{
+  &quot;items&quot;: [
+      {
+      &quot;id&quot;: 120724,
+      &quot;fulfillment_warehouse_id&quot;: &quot;system_84&quot;,
+      &quot;status&quot;: &quot;shipped&quot;,
+      &quot;name&quot;: &quot;Roland Ullrich&quot;,
+      &quot;address1&quot;: &quot;85810 Sheridan Summit&quot;,
+      &quot;address2&quot;: &quot;necessitatibus velit nisi&quot;,
+      &quot;address3&quot;: &quot;incidunt aut culpa&quot;,
+      &quot;city&quot;: &quot;Minnetonka&quot;,
+      &quot;province&quot;: &quot;Rhode Island&quot;,
+      &quot;country_id&quot;: &quot;AU&quot;,
+      &quot;zip&quot;: &quot;93792&quot;,
+      &quot;phone&quot;: &quot;(655) 941-4652 x31254&quot;,
+      &quot;items&quot;: [
+          {
+          &quot;sku&quot;: &quot;0zt9-5uk7&quot;,
+          &quot;quantity&quot;: 1
+          }
+      ],
+      &quot;shipments&quot;: [
+          {
+          &quot;id&quot;: 119804,
+          &quot;status&quot;: &quot;shipped&quot;,
+          &quot;carrier_id&quot;: &quot;Australia Post&quot;,
+          &quot;tracking_numbers&quot;: [
+              &quot;wn44vfhvqudkno3&quot;
+          ],
+          &quot;created_at&quot;: &quot;2021-11-12T09:10:06.939357Z&quot;,
+          &quot;updated_at&quot;: &quot;2022-08-23T17:26:32.815841Z&quot;,
+          &quot;items&quot;: [
+              {
+              &quot;sku&quot;: &quot;unknown_product_123899&quot;,
+              &quot;quantity&quot;: 1
+              }
+          ],
+          &quot;created_by&quot;: {
+              &quot;id&quot;: 125,
+              &quot;name&quot;: &quot;Jerome Hoeger&quot;,
+              &quot;email&quot;: &quot;Jonatan.Connelly@hotmail.com&quot;
+          },
+          &quot;label_id&quot;: null,
+          &quot;label_type&quot;: null,
+          &quot;shipped_by&quot;: null,
+          &quot;remarks&quot;: &quot;shawl&quot;
+          }
+      ],
+      &quot;shipping_method&quot;: &quot;standard&quot;,
+      &quot;warehouse_remarks&quot;: null,
+      &quot;created_at&quot;: &quot;2021-11-11T11:56:04.568984Z&quot;,
+      &quot;updated_at&quot;: &quot;2022-08-23T17:20:47.081115Z&quot;
+      }
+  ]
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Sample Call:</strong></p>
+<pre><code class="language-sh">    curl -X 'GET' \
+        'https://s2-api.ventmere.io/partner/fulfillment' \
+        -H 'accept: application/json' \
+        -H 'X-AccessKey: xxxxxxxxxxxxx'
+</code></pre>
+</li>
+</ul>
 <h2 id="api-create-fulfillment"><a class="header" href="#api-create-fulfillment">API: Create Fulfillment</a></h2>
-<p><a href="https://s2-api.ventmere.io/swagger-ui/#/partner/create_fulfillment">Specification</a></p>
+<p>Learn more : <a href="https://s2-api.ventmere.io/swagger-ui/#/partner/create_fulfillment">Specification</a></p>
 <ul>
 <li>
 <p><strong>URL:</strong></p>
-<p><code>/partner/fulfillment</code></p>
+<p><code>/fulfillment</code></p>
 </li>
 <li>
 <p><strong>Method:</strong></p>
 <p><code>POST</code></p>
 </li>
+<li>
+<p><strong>URL Params</strong></p>
+<p><code>None</code></p>
+</li>
+<li>
+<p><strong>Data Paramss</strong></p>
+<pre><code class="language-json">    {
+        &quot;address1&quot;: &quot;string&quot;,
+        &quot;address2&quot;: &quot;string&quot;,
+        &quot;address3&quot;: &quot;string&quot;,
+        &quot;city&quot;: &quot;string&quot;,
+        &quot;country_id&quot;: &quot;string&quot;,
+        &quot;fulfillment_warehouse_id&quot;: &quot;string&quot;,
+        &quot;items&quot;: [
+            {
+            &quot;quantity&quot;: 0,
+            &quot;sku&quot;: &quot;string&quot;
+            }
+        ],
+        &quot;name&quot;: &quot;string&quot;,
+        &quot;phone&quot;: &quot;string&quot;,
+        &quot;province&quot;: &quot;string&quot;,
+        &quot;shipping_method&quot;: &quot;standard&quot;,
+        &quot;zip&quot;: &quot;string&quot;
+    }
+</code></pre>
+</li>
+<li>
+<p><strong>Success Response</strong></p>
+<ul>
+<li><strong>Code:</strong> <code>200</code> <br />
+<strong>Content:</strong> 
+<pre><code class="language-json">  {
+      &quot;address1&quot;: &quot;string&quot;,
+      &quot;address2&quot;: &quot;string&quot;,
+      &quot;address3&quot;: &quot;string&quot;,
+      &quot;city&quot;: &quot;string&quot;,
+      &quot;country_id&quot;: &quot;string&quot;,
+      &quot;created_at&quot;: &quot;2022-09-30T19:39:56.848Z&quot;,
+      &quot;fulfillment_warehouse_id&quot;: &quot;string&quot;,
+      &quot;id&quot;: 0,
+      &quot;items&quot;: [
+          {
+          &quot;quantity&quot;: 0,
+          &quot;sku&quot;: &quot;string&quot;
+          }
+      ],
+      &quot;name&quot;: &quot;string&quot;,
+      &quot;phone&quot;: &quot;string&quot;,
+      &quot;province&quot;: &quot;string&quot;,
+      &quot;shipments&quot;: [
+          {
+          &quot;carrier_id&quot;: &quot;string&quot;,
+          &quot;created_at&quot;: &quot;2022-09-30T19:39:56.848Z&quot;,
+          &quot;created_by&quot;: {
+              &quot;email&quot;: &quot;string&quot;,
+              &quot;id&quot;: 0,
+              &quot;name&quot;: &quot;string&quot;
+          },
+          &quot;id&quot;: 0,
+          &quot;items&quot;: [
+              {
+              &quot;quantity&quot;: 0,
+              &quot;sku&quot;: &quot;string&quot;
+              }
+          ],
+          &quot;label_id&quot;: &quot;string&quot;,
+          &quot;label_type&quot;: &quot;string&quot;,
+          &quot;remarks&quot;: &quot;string&quot;,
+          &quot;shipped_by&quot;: {
+              &quot;email&quot;: &quot;string&quot;,
+              &quot;id&quot;: 0,
+              &quot;name&quot;: &quot;string&quot;
+          },
+          &quot;status&quot;: &quot;pending&quot;,
+          &quot;tracking_numbers&quot;: [
+              &quot;string&quot;
+          ],
+          &quot;updated_at&quot;: &quot;2022-09-30T19:39:56.848Z&quot;
+          }
+      ],
+      &quot;shipping_method&quot;: &quot;string&quot;,
+      &quot;status&quot;: &quot;created&quot;,
+      &quot;updated_at&quot;: &quot;2022-09-30T19:39:56.848Z&quot;,
+      &quot;warehouse_remarks&quot;: &quot;string&quot;,
+      &quot;zip&quot;: &quot;string&quot;
+  }
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Sample Call:</strong></p>
+<pre><code class="language-sh">    curl -X 'POST' \
+        'https://s2-api.ventmere.io/partner/fulfillment' \
+        -H 'accept: application/json' \
+        -H 'X-AccessKey: xxxxxxxxxxxxx' \
+        -H 'Content-Type: application/json' \
+        -d '{
+            &quot;address1&quot;: &quot;string&quot;,
+            &quot;address2&quot;: &quot;string&quot;,
+            &quot;address3&quot;: &quot;string&quot;,
+            &quot;city&quot;: &quot;string&quot;,
+            &quot;country_id&quot;: &quot;string&quot;,
+            &quot;fulfillment_warehouse_id&quot;: &quot;string&quot;,
+            &quot;items&quot;: [
+                {
+                &quot;quantity&quot;: 0,
+                &quot;sku&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;name&quot;: &quot;string&quot;,
+            &quot;phone&quot;: &quot;string&quot;,
+            &quot;province&quot;: &quot;string&quot;,
+            &quot;shipping_method&quot;: &quot;standard&quot;,
+            &quot;zip&quot;: &quot;string&quot;
+        }'
+</code></pre>
+</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="inventory-supply"><a class="header" href="#inventory-supply">Inventory Supply</a></h1>
+<p>Inventory supply returns the quantities of the inventory items for a specified warehouse <br />
+<br /></p>
 <hr />
 <h2 id="get-inventory-supply"><a class="header" href="#get-inventory-supply">Get Inventory Supply</a></h2>
-<p><a href="https://s2-api.ventmere.io/swagger-ui/#/partner/get_inventory_supply">Specification</a></p>
+<p>Learn more : <a href="https://s2-api.ventmere.io/swagger-ui/#/partner/get_inventory_supply">Specification</a></p>
 <ul>
 <li>
 <p><strong>URL:</strong></p>
-<p><code>/partner/inventory-supply</code></p>
+<p><code>/inventory-supply</code></p>
 </li>
 <li>
 <p><strong>Method:</strong></p>
@@ -212,16 +415,61 @@ Authentication with the API is done using a HTTP header,</p>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Required</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>warehouse_id</code></td><td>Yes</td><td>The id of the warehouse</td></tr>
-<tr><td><code>sku_list</code></td><td>No</td><td>The list of sku for fetching their inventory</td></tr>
+<tr><td><code>sku_list</code></td><td>No</td><td>The list of SKU for fetching their inventory</td></tr>
 </tbody></table>
-</div><div style="break-before: page; page-break-before: always;"></div><h1 id="product"><a class="header" href="#product">Product</a></h1>
+</div>
+<ul>
+<li>
+<p><strong>Data Params</strong></p>
+<p><code>None</code></p>
+</li>
+<li>
+<p><strong>Success Response</strong></p>
+<ul>
+<li><strong>Code:</strong> <code>200</code> <br />
+<strong>Content:</strong>
+<pre><code class="language-json">  [
+      {
+          &quot;sku&quot;: &quot;h516-ozd4&quot;,
+          &quot;quantity_avaliable&quot;: 0,
+          &quot;quantity_pending&quot;: 0,
+          &quot;quantity_hold&quot;: 0
+      },
+      {
+          &quot;sku&quot;: &quot;j40c-20s3&quot;,
+          &quot;quantity_avaliable&quot;: 0,
+          &quot;quantity_pending&quot;: 0,
+          &quot;quantity_hold&quot;: 0
+      },
+      {
+          &quot;sku&quot;: &quot;pnb6-7w26&quot;,
+          &quot;quantity_avaliable&quot;: 0,
+          &quot;quantity_pending&quot;: 0,
+          &quot;quantity_hold&quot;: 0
+      }
+  ]
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Sample Call:</strong></p>
+</li>
+</ul>
+<pre><code class="language-sh">    curl -X 'GET' \
+        'https://s2-api.ventmere.io/partner/inventory-supply?warehouse_id=system_69' \
+        -H 'accept: application/json' \
+        -H 'X-AccessKey: xxxxxxxxxxxxx'
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="product"><a class="header" href="#product">Product</a></h1>
+<p>Product resource let you fetch all your available products.</p>
 <hr />
 <h2 id="api-get-products"><a class="header" href="#api-get-products">API: Get Products</a></h2>
-<p><a href="https://s2-api.ventmere.io/swagger-ui/#/partner/query_products">Specification</a></p>
+<p>Learn more : <a href="https://s2-api.ventmere.io/swagger-ui/#/partner/query_products">Specification</a></p>
 <ul>
 <li>
 <p><strong>URL:</strong></p>
-<p><code>/partner/product</code></p>
+<p><code>/product</code></p>
 </li>
 <li>
 <p><strong>Method:</strong></p>
@@ -234,14 +482,61 @@ Authentication with the API is done using a HTTP header,</p>
 <div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Required</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>next_token</code></td><td>No</td><td>A token for use in pagination. Your subsequent call can include <code>next_token=xxxxx</code> in order to fetch the next page of the list</td></tr>
 </tbody></table>
-</div><div style="break-before: page; page-break-before: always;"></div><h1 id="purchase-order"><a class="header" href="#purchase-order">Purchase Order</a></h1>
+</div>
+<ul>
+<li>
+<p><strong>Data Params</strong></p>
+<p><code>None</code></p>
+</li>
+<li>
+<p><strong>Success Response</strong></p>
+<ul>
+<li><strong>Code:</strong> <code>200</code> <br />
+<strong>Content:</strong>
+<pre><code class="language-json">{
+  &quot;item&quot;:[
+      {
+          &quot;sku&quot;: &quot;mluw-tb2n&quot;,
+          &quot;upc&quot;: &quot;7990611084&quot;,
+          &quot;title&quot;: &quot;Licensed Cotton Keyboard&quot;,
+          &quot;is_parent&quot;: false,
+          &quot;remarks&quot;: &quot;{\&quot;masked_data\&quot;:\&quot;masked\&quot;}&quot;,
+          &quot;case_pack&quot;: 10,
+          &quot;image_main&quot;: &quot;https://loremflickr.com/640/480&quot;,
+          &quot;package_length_mm&quot;: 225,
+          &quot;package_width_mm&quot;: 97,
+          &quot;package_height_mm&quot;: 264,
+          &quot;shipping_weight_kg&quot;: 0.65,
+          &quot;case_length_mm&quot;: 508,
+          &quot;case_width_mm&quot;: 286,
+          &quot;case_height_mm&quot;: 489,
+          &quot;case_weight_kg&quot;: 7.96,
+          &quot;category&quot;: &quot;Headphones&quot;
+      }
+  ]
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Sample Call:</strong></p>
+<pre><code class="language-sh">    curl -X 'GET' \
+        'https://s2-api.ventmere.io/partner/product' \
+        -H 'accept: application/json' \
+        -H 'X-AccessKey: xxxxxxxxxxxxx'
+</code></pre>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="purchase-order"><a class="header" href="#purchase-order">Purchase Order</a></h1>
+<p>A purchase order is a customer's request to purchase one or more products from a shop. You can create and retrieve orders using the Purchase Order resource.</p>
 <hr />
 <h2 id="api-get-purchase-order"><a class="header" href="#api-get-purchase-order">API: Get Purchase Order</a></h2>
-<p><a href="https://s2-api.ventmere.io/swagger-ui/#/partner/query_purchase_orders">Specification</a></p>
+<p>Learn more : <a href="https://s2-api.ventmere.io/swagger-ui/#/partner/query_purchase_orders">Specification</a></p>
 <ul>
 <li>
 <p><strong>URL:</strong></p>
-<p><code>/partner/purchase-order</code></p>
+<p><code>/purchase-order</code></p>
 </li>
 <li>
 <p><strong>Method:</strong></p>
@@ -256,44 +551,242 @@ Authentication with the API is done using a HTTP header,</p>
 <tr><td><code>next_token</code></td><td>No</td><td>A token for use in pagination. Your subsequent call can include <code>next_token=xxxxx</code> in order to fetch the next page of the list</td></tr>
 </tbody></table>
 </div>
+<ul>
+<li>
+<p><strong>Data Params</strong></p>
+<p><code>None</code></p>
+</li>
+<li>
+<p><strong>Success Response</strong></p>
+<ul>
+<li><strong>Code:</strong> <code>200</code> <br />
+<strong>Content:</strong>
+<pre><code class="language-json">[
+  {
+      &quot;items&quot;: [
+      {
+          &quot;completion_date&quot;: &quot;2022-09-30T20:56:21.588Z&quot;,
+          &quot;created_at&quot;: &quot;2022-09-30T20:56:21.588Z&quot;,
+          &quot;eta&quot;: &quot;2022-09-30T20:56:21.588Z&quot;,
+          &quot;from_supplier&quot;: {
+          &quot;id&quot;: 0,
+          &quot;name&quot;: &quot;string&quot;
+          },
+          &quot;id&quot;: 0,
+          &quot;items&quot;: [
+          {
+              &quot;completed_quantity&quot;: 0,
+              &quot;quantity&quot;: 0,
+              &quot;sku&quot;: &quot;string&quot;
+          }
+          ],
+          &quot;remarks&quot;: &quot;string&quot;,
+          &quot;status&quot;: &quot;pending&quot;,
+          &quot;to_warehouse_id&quot;: &quot;string&quot;,
+          &quot;updated_at&quot;: &quot;2022-09-30T20:56:21.588Z&quot;
+      }
+      ],
+      &quot;next_token&quot;: &quot;string&quot;
+  }
+]
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Sample Call:</strong></p>
+<pre><code class="language-sh">    curl -X 'GET' \
+        'https://s2-api.ventmere.io/partner/purchase-order' \
+        -H 'accept: application/json' \
+        -H 'X-AccessKey: xxxxxxxxxxxxx'
+</code></pre>
+</li>
+</ul>
 <h2 id="api-create-purchase-order"><a class="header" href="#api-create-purchase-order">API: Create Purchase Order</a></h2>
 <p><a href="https://s2-api.ventmere.io/swagger-ui/#/partner/create_purchase_order">Specification</a></p>
 <ul>
 <li>
 <p><strong>URL:</strong></p>
-<p><code>/partner/purchase-order</code></p>
+<p><code>/purchase-order</code></p>
 </li>
 <li>
 <p><strong>Method:</strong></p>
 <p><code>POST</code></p>
 </li>
+<li>
+<p><strong>URL Params:</strong></p>
+<p><code>None</code></p>
+</li>
+<li>
+<p><strong>Data Params</strong></p>
+<pre><code class="language-json">    {
+        &quot;eta&quot;: &quot;2022-09-30T21:06:03.806Z&quot;,
+        &quot;from_supplier_id&quot;: 0,
+        &quot;items&quot;: [
+            {
+            &quot;quantity&quot;: 0,
+            &quot;sku&quot;: &quot;string&quot;
+            }
+        ],
+        &quot;remarks&quot;: &quot;string&quot;,
+        &quot;to_warehouse_id&quot;: &quot;string&quot;
+    }
+</code></pre>
+</li>
+<li>
+<p><strong>Success Response</strong></p>
+<ul>
+<li><strong>Code:</strong> <code>200</code> <br />
+<strong>Content:</strong>
+<pre><code class="language-json">  {
+      &quot;completion_date&quot;: &quot;2022-09-30T21:06:03.808Z&quot;,
+      &quot;created_at&quot;: &quot;2022-09-30T21:06:03.808Z&quot;,
+      &quot;eta&quot;: &quot;2022-09-30T21:06:03.808Z&quot;,
+      &quot;from_supplier&quot;: {
+          &quot;id&quot;: 0,
+          &quot;name&quot;: &quot;string&quot;
+      },
+      &quot;id&quot;: 0,
+      &quot;items&quot;: [
+          {
+          &quot;completed_quantity&quot;: 0,
+          &quot;quantity&quot;: 0,
+          &quot;sku&quot;: &quot;string&quot;
+          }
+      ],
+      &quot;remarks&quot;: &quot;string&quot;,
+      &quot;status&quot;: &quot;pending&quot;,
+      &quot;to_warehouse_id&quot;: &quot;string&quot;,
+      &quot;updated_at&quot;: &quot;2022-09-30T21:06:03.808Z&quot;
+  }
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Sample Call:</strong></p>
+<pre><code class="language-sh">    curl -X 'POST' \
+        'https://s2-api.ventmere.io/partner/purchase-order' \
+        -H 'accept: application/json' \
+        -H 'X-AccessKey: xxxxxxxxxxxxx' \
+        -H 'Content-Type: application/json' \
+        -d '{
+            &quot;eta&quot;: &quot;2022-09-30T21:10:19.904Z&quot;,
+            &quot;from_supplier_id&quot;: 0,
+            &quot;items&quot;: [
+                {
+                &quot;quantity&quot;: 0,
+                &quot;sku&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;remarks&quot;: &quot;string&quot;,
+            &quot;to_warehouse_id&quot;: &quot;string&quot;
+        }'
+</code></pre>
+</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="supplier"><a class="header" href="#supplier">Supplier</a></h1>
+<p>You can retrieve a list of all available supplies </p>
 <hr />
 <h2 id="api-get-suppliers"><a class="header" href="#api-get-suppliers">API: Get Suppliers</a></h2>
-<p><a href="https://s2-api.ventmere.io/swagger-ui/#/partner/get_suppliers">Specification</a></p>
+<p>Learn more : <a href="https://s2-api.ventmere.io/swagger-ui/#/partner/get_suppliers">Specification</a></p>
 <ul>
 <li>
 <p><strong>URL:</strong></p>
-<p><code>/partner/supplier</code></p>
+<p><code>/supplier</code></p>
 </li>
 <li>
 <p><strong>Method:</strong></p>
 <p><code>GET</code></p>
+</li>
+<li>
+<p><strong>URL Params:</strong></p>
+<p><code>None</code></p>
+</li>
+<li>
+<p><strong>Data Params:</strong></p>
+<p><code>None</code></p>
+</li>
+<li>
+<p><strong>Success Response:</strong></p>
+<ul>
+<li><strong>Code</strong> <code>200</code> <br />
+<strong>Content:</strong>
+<pre><code class="language-json">[
+  {
+      &quot;id&quot;: 52,
+      &quot;name&quot;: &quot;Buckridge, Mills and Bechtelar&quot;
+  },
+  {
+      &quot;id&quot;: 29,
+      &quot;name&quot;: &quot;Buckridge - Streich&quot;
+  }
+]
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Sample Call:</strong></p>
+<pre><code class="language-sh">    curl -X 'GET' \
+        'https://s2-api.ventmere.io/partner/supplier' \
+        -H 'accept: application/json' \
+        -H 'X-AccessKey: xxxxxxxxxxxxxxxxxxx'
+</code></pre>
 </li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="warehouse"><a class="header" href="#warehouse">Warehouse</a></h1>
+<p>You can retrieve a list of all available warehouses</p>
 <hr />
 <h2 id="api-get-warehouses"><a class="header" href="#api-get-warehouses">API: Get Warehouses</a></h2>
-<p><a href="https://s2-api.ventmere.io/swagger-ui/#/partner/get_warehouses">Specification</a></p>
+<p>Learn more : <a href="https://s2-api.ventmere.io/swagger-ui/#/partner/get_warehouses">Specification</a></p>
 <ul>
 <li>
 <p><strong>URL:</strong></p>
-<p><code>/partner/warehouse</code></p>
+<p><code>/warehouse</code></p>
 </li>
 <li>
 <p><strong>Method:</strong></p>
 <p><code>GET</code></p>
+</li>
+<li>
+<p><strong>URL Params:</strong></p>
+<p><code>None</code></p>
+</li>
+<li>
+<p><strong>Data Params:</strong></p>
+<p><code>None</code></p>
+</li>
+<li>
+<p><strong>Success Response:</strong></p>
+<ul>
+<li><strong>Code</strong> <code>200</code> <br />
+<strong>Content:</strong>
+<pre><code class="language-json">  [
+      {
+          &quot;id&quot;: &quot;system_73&quot;,
+          &quot;name&quot;: &quot;Bailey, Prosacco and Quigley&quot;
+      },
+      {
+          &quot;id&quot;: &quot;system_51&quot;,
+          &quot;name&quot;: &quot;Bartoletti, Mueller and Gerhold&quot;
+      },
+      {
+          &quot;id&quot;: &quot;system_87&quot;,
+          &quot;name&quot;: &quot;Berge, Heathcote and Langosh&quot;
+      }
+  ]
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Sample Call:</strong></p>
+<pre><code class="language-sh">    curl -X 'GET' \
+        'https://s2-api.ventmere.io/partner/warehouse' \
+        -H 'accept: application/json' \
+        -H 'X-AccessKey: xxxxxxxxxxxxxxxxxxx'
+</code></pre>
 </li>
 </ul>
 

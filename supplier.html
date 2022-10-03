@@ -135,17 +135,53 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="supplier"><a class="header" href="#supplier">Supplier</a></h1>
+<p>You can retrieve a list of all available supplies </p>
 <hr />
 <h2 id="api-get-suppliers"><a class="header" href="#api-get-suppliers">API: Get Suppliers</a></h2>
-<p><a href="https://s2-api.ventmere.io/swagger-ui/#/partner/get_suppliers">Specification</a></p>
+<p>Learn more : <a href="https://s2-api.ventmere.io/swagger-ui/#/partner/get_suppliers">Specification</a></p>
 <ul>
 <li>
 <p><strong>URL:</strong></p>
-<p><code>/partner/supplier</code></p>
+<p><code>/supplier</code></p>
 </li>
 <li>
 <p><strong>Method:</strong></p>
 <p><code>GET</code></p>
+</li>
+<li>
+<p><strong>URL Params:</strong></p>
+<p><code>None</code></p>
+</li>
+<li>
+<p><strong>Data Params:</strong></p>
+<p><code>None</code></p>
+</li>
+<li>
+<p><strong>Success Response:</strong></p>
+<ul>
+<li><strong>Code</strong> <code>200</code> <br />
+<strong>Content:</strong>
+<pre><code class="language-json">[
+  {
+      &quot;id&quot;: 52,
+      &quot;name&quot;: &quot;Buckridge, Mills and Bechtelar&quot;
+  },
+  {
+      &quot;id&quot;: 29,
+      &quot;name&quot;: &quot;Buckridge - Streich&quot;
+  }
+]
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Sample Call:</strong></p>
+<pre><code class="language-sh">    curl -X 'GET' \
+        'https://s2-api.ventmere.io/partner/supplier' \
+        -H 'accept: application/json' \
+        -H 'X-AccessKey: xxxxxxxxxxxxxxxxxxx'
+</code></pre>
 </li>
 </ul>
 

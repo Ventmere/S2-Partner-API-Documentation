@@ -135,13 +135,14 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="fulfillment"><a class="header" href="#fulfillment">Fulfillment</a></h1>
+<p>You can use the <code>Fulfillment</code> resource to view fulfillments for a list of orders or a fulfillment order. A fulfillment represents work that is completed as part of a fulfillment order and can include one or more items. You can use the <code>Fulfillment</code> resource to manage fulfillments for both orders and fulfillment orders.</p>
 <hr />
 <h2 id="api-get-fulfillments"><a class="header" href="#api-get-fulfillments">API: Get Fulfillments</a></h2>
-<p><a href="https://s2-api.ventmere.io/swagger-ui/#/partner/query_fulfillments">Specification</a></p>
+<p>Learn more : <a href="https://s2-api.ventmere.io/swagger-ui/#/partner/query_fulfillments">Specification</a></p>
 <ul>
 <li>
 <p><strong>URL:</strong></p>
-<p><code>/partner/fulfillment</code></p>
+<p><code>/fulfillment</code></p>
 </li>
 <li>
 <p><strong>Method:</strong></p>
@@ -156,16 +157,213 @@
 <tr><td><code>next_token</code></td><td>No</td><td>A token for use in pagination. Your subsequent call can include <code>next_token=xxxxx</code> in order to fetch the next page of the list</td></tr>
 </tbody></table>
 </div>
+<ul>
+<li>
+<p><strong>Data Params</strong></p>
+<p><code>None</code></p>
+</li>
+<li>
+<p><strong>Success Response</strong></p>
+<ul>
+<li><strong>Code:</strong> <code>200</code> <br />
+<strong>Content:</strong> 
+<pre><code class="language-json">{
+  &quot;items&quot;: [
+      {
+      &quot;id&quot;: 120724,
+      &quot;fulfillment_warehouse_id&quot;: &quot;system_84&quot;,
+      &quot;status&quot;: &quot;shipped&quot;,
+      &quot;name&quot;: &quot;Roland Ullrich&quot;,
+      &quot;address1&quot;: &quot;85810 Sheridan Summit&quot;,
+      &quot;address2&quot;: &quot;necessitatibus velit nisi&quot;,
+      &quot;address3&quot;: &quot;incidunt aut culpa&quot;,
+      &quot;city&quot;: &quot;Minnetonka&quot;,
+      &quot;province&quot;: &quot;Rhode Island&quot;,
+      &quot;country_id&quot;: &quot;AU&quot;,
+      &quot;zip&quot;: &quot;93792&quot;,
+      &quot;phone&quot;: &quot;(655) 941-4652 x31254&quot;,
+      &quot;items&quot;: [
+          {
+          &quot;sku&quot;: &quot;0zt9-5uk7&quot;,
+          &quot;quantity&quot;: 1
+          }
+      ],
+      &quot;shipments&quot;: [
+          {
+          &quot;id&quot;: 119804,
+          &quot;status&quot;: &quot;shipped&quot;,
+          &quot;carrier_id&quot;: &quot;Australia Post&quot;,
+          &quot;tracking_numbers&quot;: [
+              &quot;wn44vfhvqudkno3&quot;
+          ],
+          &quot;created_at&quot;: &quot;2021-11-12T09:10:06.939357Z&quot;,
+          &quot;updated_at&quot;: &quot;2022-08-23T17:26:32.815841Z&quot;,
+          &quot;items&quot;: [
+              {
+              &quot;sku&quot;: &quot;unknown_product_123899&quot;,
+              &quot;quantity&quot;: 1
+              }
+          ],
+          &quot;created_by&quot;: {
+              &quot;id&quot;: 125,
+              &quot;name&quot;: &quot;Jerome Hoeger&quot;,
+              &quot;email&quot;: &quot;Jonatan.Connelly@hotmail.com&quot;
+          },
+          &quot;label_id&quot;: null,
+          &quot;label_type&quot;: null,
+          &quot;shipped_by&quot;: null,
+          &quot;remarks&quot;: &quot;shawl&quot;
+          }
+      ],
+      &quot;shipping_method&quot;: &quot;standard&quot;,
+      &quot;warehouse_remarks&quot;: null,
+      &quot;created_at&quot;: &quot;2021-11-11T11:56:04.568984Z&quot;,
+      &quot;updated_at&quot;: &quot;2022-08-23T17:20:47.081115Z&quot;
+      }
+  ]
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Sample Call:</strong></p>
+<pre><code class="language-sh">    curl -X 'GET' \
+        'https://s2-api.ventmere.io/partner/fulfillment' \
+        -H 'accept: application/json' \
+        -H 'X-AccessKey: xxxxxxxxxxxxx'
+</code></pre>
+</li>
+</ul>
 <h2 id="api-create-fulfillment"><a class="header" href="#api-create-fulfillment">API: Create Fulfillment</a></h2>
-<p><a href="https://s2-api.ventmere.io/swagger-ui/#/partner/create_fulfillment">Specification</a></p>
+<p>Learn more : <a href="https://s2-api.ventmere.io/swagger-ui/#/partner/create_fulfillment">Specification</a></p>
 <ul>
 <li>
 <p><strong>URL:</strong></p>
-<p><code>/partner/fulfillment</code></p>
+<p><code>/fulfillment</code></p>
 </li>
 <li>
 <p><strong>Method:</strong></p>
 <p><code>POST</code></p>
+</li>
+<li>
+<p><strong>URL Params</strong></p>
+<p><code>None</code></p>
+</li>
+<li>
+<p><strong>Data Paramss</strong></p>
+<pre><code class="language-json">    {
+        &quot;address1&quot;: &quot;string&quot;,
+        &quot;address2&quot;: &quot;string&quot;,
+        &quot;address3&quot;: &quot;string&quot;,
+        &quot;city&quot;: &quot;string&quot;,
+        &quot;country_id&quot;: &quot;string&quot;,
+        &quot;fulfillment_warehouse_id&quot;: &quot;string&quot;,
+        &quot;items&quot;: [
+            {
+            &quot;quantity&quot;: 0,
+            &quot;sku&quot;: &quot;string&quot;
+            }
+        ],
+        &quot;name&quot;: &quot;string&quot;,
+        &quot;phone&quot;: &quot;string&quot;,
+        &quot;province&quot;: &quot;string&quot;,
+        &quot;shipping_method&quot;: &quot;standard&quot;,
+        &quot;zip&quot;: &quot;string&quot;
+    }
+</code></pre>
+</li>
+<li>
+<p><strong>Success Response</strong></p>
+<ul>
+<li><strong>Code:</strong> <code>200</code> <br />
+<strong>Content:</strong> 
+<pre><code class="language-json">  {
+      &quot;address1&quot;: &quot;string&quot;,
+      &quot;address2&quot;: &quot;string&quot;,
+      &quot;address3&quot;: &quot;string&quot;,
+      &quot;city&quot;: &quot;string&quot;,
+      &quot;country_id&quot;: &quot;string&quot;,
+      &quot;created_at&quot;: &quot;2022-09-30T19:39:56.848Z&quot;,
+      &quot;fulfillment_warehouse_id&quot;: &quot;string&quot;,
+      &quot;id&quot;: 0,
+      &quot;items&quot;: [
+          {
+          &quot;quantity&quot;: 0,
+          &quot;sku&quot;: &quot;string&quot;
+          }
+      ],
+      &quot;name&quot;: &quot;string&quot;,
+      &quot;phone&quot;: &quot;string&quot;,
+      &quot;province&quot;: &quot;string&quot;,
+      &quot;shipments&quot;: [
+          {
+          &quot;carrier_id&quot;: &quot;string&quot;,
+          &quot;created_at&quot;: &quot;2022-09-30T19:39:56.848Z&quot;,
+          &quot;created_by&quot;: {
+              &quot;email&quot;: &quot;string&quot;,
+              &quot;id&quot;: 0,
+              &quot;name&quot;: &quot;string&quot;
+          },
+          &quot;id&quot;: 0,
+          &quot;items&quot;: [
+              {
+              &quot;quantity&quot;: 0,
+              &quot;sku&quot;: &quot;string&quot;
+              }
+          ],
+          &quot;label_id&quot;: &quot;string&quot;,
+          &quot;label_type&quot;: &quot;string&quot;,
+          &quot;remarks&quot;: &quot;string&quot;,
+          &quot;shipped_by&quot;: {
+              &quot;email&quot;: &quot;string&quot;,
+              &quot;id&quot;: 0,
+              &quot;name&quot;: &quot;string&quot;
+          },
+          &quot;status&quot;: &quot;pending&quot;,
+          &quot;tracking_numbers&quot;: [
+              &quot;string&quot;
+          ],
+          &quot;updated_at&quot;: &quot;2022-09-30T19:39:56.848Z&quot;
+          }
+      ],
+      &quot;shipping_method&quot;: &quot;string&quot;,
+      &quot;status&quot;: &quot;created&quot;,
+      &quot;updated_at&quot;: &quot;2022-09-30T19:39:56.848Z&quot;,
+      &quot;warehouse_remarks&quot;: &quot;string&quot;,
+      &quot;zip&quot;: &quot;string&quot;
+  }
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Sample Call:</strong></p>
+<pre><code class="language-sh">    curl -X 'POST' \
+        'https://s2-api.ventmere.io/partner/fulfillment' \
+        -H 'accept: application/json' \
+        -H 'X-AccessKey: xxxxxxxxxxxxx' \
+        -H 'Content-Type: application/json' \
+        -d '{
+            &quot;address1&quot;: &quot;string&quot;,
+            &quot;address2&quot;: &quot;string&quot;,
+            &quot;address3&quot;: &quot;string&quot;,
+            &quot;city&quot;: &quot;string&quot;,
+            &quot;country_id&quot;: &quot;string&quot;,
+            &quot;fulfillment_warehouse_id&quot;: &quot;string&quot;,
+            &quot;items&quot;: [
+                {
+                &quot;quantity&quot;: 0,
+                &quot;sku&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;name&quot;: &quot;string&quot;,
+            &quot;phone&quot;: &quot;string&quot;,
+            &quot;province&quot;: &quot;string&quot;,
+            &quot;shipping_method&quot;: &quot;standard&quot;,
+            &quot;zip&quot;: &quot;string&quot;
+        }'
+</code></pre>
 </li>
 </ul>
 

@@ -135,13 +135,15 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="inventory-supply"><a class="header" href="#inventory-supply">Inventory Supply</a></h1>
+<p>Inventory supply returns the quantities of the inventory items for a specified warehouse <br />
+<br /></p>
 <hr />
 <h2 id="get-inventory-supply"><a class="header" href="#get-inventory-supply">Get Inventory Supply</a></h2>
-<p><a href="https://s2-api.ventmere.io/swagger-ui/#/partner/get_inventory_supply">Specification</a></p>
+<p>Learn more : <a href="https://s2-api.ventmere.io/swagger-ui/#/partner/get_inventory_supply">Specification</a></p>
 <ul>
 <li>
 <p><strong>URL:</strong></p>
-<p><code>/partner/inventory-supply</code></p>
+<p><code>/inventory-supply</code></p>
 </li>
 <li>
 <p><strong>Method:</strong></p>
@@ -153,9 +155,53 @@
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Required</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>warehouse_id</code></td><td>Yes</td><td>The id of the warehouse</td></tr>
-<tr><td><code>sku_list</code></td><td>No</td><td>The list of sku for fetching their inventory</td></tr>
+<tr><td><code>sku_list</code></td><td>No</td><td>The list of SKU for fetching their inventory</td></tr>
 </tbody></table>
 </div>
+<ul>
+<li>
+<p><strong>Data Params</strong></p>
+<p><code>None</code></p>
+</li>
+<li>
+<p><strong>Success Response</strong></p>
+<ul>
+<li><strong>Code:</strong> <code>200</code> <br />
+<strong>Content:</strong>
+<pre><code class="language-json">  [
+      {
+          &quot;sku&quot;: &quot;h516-ozd4&quot;,
+          &quot;quantity_avaliable&quot;: 0,
+          &quot;quantity_pending&quot;: 0,
+          &quot;quantity_hold&quot;: 0
+      },
+      {
+          &quot;sku&quot;: &quot;j40c-20s3&quot;,
+          &quot;quantity_avaliable&quot;: 0,
+          &quot;quantity_pending&quot;: 0,
+          &quot;quantity_hold&quot;: 0
+      },
+      {
+          &quot;sku&quot;: &quot;pnb6-7w26&quot;,
+          &quot;quantity_avaliable&quot;: 0,
+          &quot;quantity_pending&quot;: 0,
+          &quot;quantity_hold&quot;: 0
+      }
+  ]
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Sample Call:</strong></p>
+</li>
+</ul>
+<pre><code class="language-sh">    curl -X 'GET' \
+        'https://s2-api.ventmere.io/partner/inventory-supply?warehouse_id=system_69' \
+        -H 'accept: application/json' \
+        -H 'X-AccessKey: xxxxxxxxxxxxx'
+</code></pre>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">

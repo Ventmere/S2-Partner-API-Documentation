@@ -135,17 +135,57 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="warehouse"><a class="header" href="#warehouse">Warehouse</a></h1>
+<p>You can retrieve a list of all available warehouses</p>
 <hr />
 <h2 id="api-get-warehouses"><a class="header" href="#api-get-warehouses">API: Get Warehouses</a></h2>
-<p><a href="https://s2-api.ventmere.io/swagger-ui/#/partner/get_warehouses">Specification</a></p>
+<p>Learn more : <a href="https://s2-api.ventmere.io/swagger-ui/#/partner/get_warehouses">Specification</a></p>
 <ul>
 <li>
 <p><strong>URL:</strong></p>
-<p><code>/partner/warehouse</code></p>
+<p><code>/warehouse</code></p>
 </li>
 <li>
 <p><strong>Method:</strong></p>
 <p><code>GET</code></p>
+</li>
+<li>
+<p><strong>URL Params:</strong></p>
+<p><code>None</code></p>
+</li>
+<li>
+<p><strong>Data Params:</strong></p>
+<p><code>None</code></p>
+</li>
+<li>
+<p><strong>Success Response:</strong></p>
+<ul>
+<li><strong>Code</strong> <code>200</code> <br />
+<strong>Content:</strong>
+<pre><code class="language-json">  [
+      {
+          &quot;id&quot;: &quot;system_73&quot;,
+          &quot;name&quot;: &quot;Bailey, Prosacco and Quigley&quot;
+      },
+      {
+          &quot;id&quot;: &quot;system_51&quot;,
+          &quot;name&quot;: &quot;Bartoletti, Mueller and Gerhold&quot;
+      },
+      {
+          &quot;id&quot;: &quot;system_87&quot;,
+          &quot;name&quot;: &quot;Berge, Heathcote and Langosh&quot;
+      }
+  ]
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Sample Call:</strong></p>
+<pre><code class="language-sh">    curl -X 'GET' \
+        'https://s2-api.ventmere.io/partner/warehouse' \
+        -H 'accept: application/json' \
+        -H 'X-AccessKey: xxxxxxxxxxxxxxxxxxx'
+</code></pre>
 </li>
 </ul>
 

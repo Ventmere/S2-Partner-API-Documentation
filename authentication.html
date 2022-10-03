@@ -138,15 +138,15 @@
 <p>All API calls require authentication.
 Authentication with the API is done using a HTTP header,</p>
 <ul>
-<li>X-AccessKey: The access key</li>
+<li>X-AccessKey: Your access key</li>
 </ul>
 <pre><code class="language-sh">curl -X 'GET' \
   'https://s2-api.ventmere.io/partner/fulfillment' \
   -H 'accept: application/json' \
   -H 'X-AccessKey: YOUR-ACCESS-KEY'
 </code></pre>
-<p>Your marketplace account manager will set these up and communicate them with you.</p>
-<p>Your API access key carry many privileges, so be sure to keep them secure! Do not share your secret API keys in publicly accessible areas such as GitHub, client-side code, and so forth.</p>
+<p>Your S2 Partner account manager will set these up and communicate them with you.</p>
+<p>Your API access key carries many privileges, so be sure to keep them secure! Do not share your secret API access keys in publicly accessible areas such as GitHub, client-side code, and etc.</p>
 <p>All API requests must be made over HTTPS. API requests without authentication will also fail.</p>
 
                     </main>
