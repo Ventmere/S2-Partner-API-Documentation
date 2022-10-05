@@ -12,7 +12,9 @@ curl -X 'GET' \
   -H 'X-AccessKey: YOUR-ACCESS-KEY'
 ```
 
-Your S2 Partner account manager will set these up and communicate them with you.
+Your S2 Partner account manager will set these up and communicate them with you. 
+
+You will have two access keys, one for the test environment and the other for the production environment.
 
 
 Your API access key carries many privileges, so be sure to keep them secure! Do not share your secret API access keys in publicly accessible areas such as GitHub, client-side code, and etc.
